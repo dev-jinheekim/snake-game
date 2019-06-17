@@ -7,6 +7,7 @@ function createBoard (rowCount, colCount) {
   this.board.insertAdjacentHTML('afterbegin', table)
 }
 
+// TODO : dom 조작 줄이기
 function changeAllBackgroundColor () {
   const tds = this.board.getElementsByTagName('td')
   for (let td of tds) {
@@ -28,7 +29,9 @@ class Snake {
   direction = 'east'
   locations = [{ x: 0, y: 0 }]
 
+  // TODO : 배열 조작 효율성 확인 및 최적화하기
   crawl () {
+    console.log('before crawl', this.locations.toString())
     switch (this.direction) {
       case 'east':
         this.locations.unshift({x: this.locations[0].x + 1, y: this.locations[0].y})
@@ -44,6 +47,7 @@ class Snake {
         break
     }
     this.locations.pop()
+    console.log('after crawl', this.locations)
   }
 
   grow () {
@@ -102,6 +106,7 @@ class Game {
 
   init() {
 
+    // TODO : 키조작 글자입력 안되는것 확인해보기
     document.addEventListener('keydown', (event) => {
       console.log(event)
       const keyName = event.key
@@ -121,6 +126,7 @@ class Game {
         case 'Escape':
           clearInterval(interval)
           break
+        // TODO : 정지후 시작할 수 있게 변경하기
         // case 'Space':
       }
     })
@@ -128,6 +134,7 @@ class Game {
     createBoard(this.rowCount, this.colCount)
     this.apple.create()
 
+    // TODO : 흐름제어 함수를 별도로 제작하여 코드 정리하기
     const interval = setInterval(() => {
 
       changeAllBackgroundColor()
