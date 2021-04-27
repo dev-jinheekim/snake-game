@@ -31,7 +31,6 @@ class Snake {
 
   // TODO : 배열 조작 효율성 확인 및 최적화하기
   crawl () {
-    console.log('before crawl', this.locations.toString())
     switch (this.direction) {
       case 'east':
         this.locations.unshift({x: this.locations[0].x + 1, y: this.locations[0].y})
@@ -47,7 +46,6 @@ class Snake {
         break
     }
     this.locations.pop()
-    console.log('after crawl', this.locations)
   }
 
   grow () {
